@@ -711,7 +711,7 @@ macro_rules! new_curve_impl {
             }
             fn to_raw_bytes(&self) -> alloc::vec::Vec<u8> {
                 let mut res = alloc::vec::Vec::with_capacity(3 * $base::size());
-                Self::write_raw(self, &mut res.as_mut_slice()).unwrap();
+                Self::write_raw(self, &mut res).unwrap();
                 res
             }
             fn read_raw_unchecked<R: crate::io::Read>(reader: &mut R) -> Self {
@@ -812,7 +812,7 @@ macro_rules! new_curve_impl {
             }
             fn to_raw_bytes(&self) -> alloc::vec::Vec<u8> {
                 let mut res: alloc::vec::Vec<u8> = alloc::vec::Vec::with_capacity(2 * $base::size());
-                Self::write_raw(self, &mut res.as_mut_slice()).unwrap();
+                Self::write_raw(self, &mut res).unwrap();
                 res
             }
             fn read_raw_unchecked<R: crate::io::Read>(reader: &mut R) -> Self {

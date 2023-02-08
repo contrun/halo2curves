@@ -591,6 +591,8 @@ pub const FROBENIUS_COEFF_FQ6_C2: [Fq2; 6] = [
 ];
 
 #[cfg(test)]
+use alloc::string::ToString;
+#[cfg(test)]
 use rand::SeedableRng;
 #[cfg(test)]
 use rand_xorshift::XorShiftRng;

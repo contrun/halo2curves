@@ -50,3 +50,20 @@ impl Write for &mut [u8] {
         }
     }
 }
+
+impl Write for alloc::vec::Vec<u8> {
+    fn write(&mut self, data: &[u8]) -> Result<usize> {
+        let len = data.len();
+        self.extend_from_slice(data);
+        Ok(len)
+    }
+
+    fn write_all(&mut self, data: &[u8]) -> Result<()> {
+        let data_wrote = self.write(data)?;
+        if data_wrote == data.len() {
+            Ok(())
+        } else {
+            Err("failed to write whole buffer")
+        }
+    }
+}

@@ -4,6 +4,8 @@ use rand::{RngCore, SeedableRng};
 use rand_xorshift::XorShiftRng;
 
 use crate::serde::SerdeObject;
+use alloc::string::String;
+use alloc::{format, vec::Vec};
 
 pub fn random_field_tests<F: Field>(type_name: String) {
     let mut rng = XorShiftRng::from_seed([

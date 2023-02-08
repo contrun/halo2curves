@@ -278,6 +278,7 @@ mod test {
     use crate::serde::SerdeObject;
 
     use super::*;
+    use alloc::string::ToString;
     use ark_std::{end_timer, start_timer};
     use ff::Field;
     use rand::SeedableRng;

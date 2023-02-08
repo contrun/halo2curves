@@ -298,6 +298,7 @@ impl WithSmallOrderMulGroup<3> for Fq {
 #[cfg(test)]
 mod test {
     use super::*;
+    use alloc::string::ToString;
     use ff::Field;
     use rand_core::OsRng;
 

@@ -3,6 +3,7 @@ use crate::bn256::Fq;
 use crate::bn256::Fq2;
 use crate::bn256::Fr;
 use crate::{Coordinates, CurveAffine, CurveAffineExt, CurveExt, Group};
+use alloc::boxed::Box;
 use core::cmp;
 use core::fmt::Debug;
 use core::iter::Sum;

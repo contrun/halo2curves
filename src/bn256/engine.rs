@@ -6,6 +6,7 @@ use crate::bn256::fq2::*;
 use crate::bn256::fq6::FROBENIUS_COEFF_FQ6_C1;
 use crate::bn256::fr::*;
 use crate::pairing::{Engine, MillerLoopResult, MultiMillerLoop, PairingCurveAffine};
+use alloc::{vec, vec::Vec};
 use core::borrow::Borrow;
 use core::iter::Sum;
 use core::ops::{Add, Mul, MulAssign, Neg, Sub};
@@ -60,8 +61,8 @@ impl PairingCurveAffine for G2Affine {
 #[derive(Copy, Clone, Debug, Default)]
 pub struct Gt(pub(crate) Fq12);
 
-impl std::fmt::Display for Gt {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+impl core::fmt::Display for Gt {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         write!(f, "{:?}", self)
     }
 }

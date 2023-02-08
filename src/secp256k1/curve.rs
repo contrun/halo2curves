@@ -1,6 +1,7 @@
 use crate::secp256k1::Fp;
 use crate::secp256k1::Fq;
 use crate::{Coordinates, CurveAffine, CurveAffineExt, CurveExt};
+use alloc::boxed::Box;
 use core::cmp;
 use core::fmt::Debug;
 use core::iter::Sum;

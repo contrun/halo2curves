@@ -1,10 +1,11 @@
 use super::fq::{Fq, NEGATIVE_ONE};
 use super::LegendreSymbol;
+use alloc::vec::Vec;
+use core::cmp::Ordering;
 use core::convert::TryInto;
 use core::ops::{Add, Mul, Neg, Sub};
 use ff::{Field, FromUniformBytes, PrimeField, WithSmallOrderMulGroup};
 use rand::RngCore;
-use std::cmp::Ordering;
 use subtle::{Choice, ConditionallySelectable, ConstantTimeEq, CtOption};
 
 /// An element of Fq2, represented by c0 + c1 * u.
@@ -524,16 +525,16 @@ impl crate::serde::SerdeObject for Fq2 {
         }
         res
     }
-    fn read_raw_unchecked<R: std::io::Read>(reader: &mut R) -> Self {
+    fn read_raw_unchecked<R: crate::io::Read>(reader: &mut R) -> Self {
         let [c0, c1] = [(); 2].map(|_| Fq::read_raw_unchecked(reader));
         Self { c0, c1 }
     }
-    fn read_raw<R: std::io::Read>(reader: &mut R) -> std::io::Result<Self> {
+    fn read_raw<R: crate::io::Read>(reader: &mut R) -> crate::io::Result<Self> {
         let c0 = Fq::read_raw(reader)?;
         let c1 = Fq::read_raw(reader)?;
         Ok(Self { c0, c1 })
     }
-    fn write_raw<W: std::io::Write>(&self, writer: &mut W) -> std::io::Result<()> {
+    fn write_raw<W: crate::io::Write>(&self, writer: &mut W) -> crate::io::Result<()> {
         self.c0.write_raw(writer)?;
         self.c1.write_raw(writer)
     }

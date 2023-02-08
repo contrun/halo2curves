@@ -288,14 +288,14 @@ macro_rules! field_common {
                 let elt = Self::from_raw_bytes_unchecked(bytes);
                 Self::is_less_than(&elt.0, &$modulus.0).then(|| elt)
             }
-            fn to_raw_bytes(&self) -> Vec<u8> {
-                let mut res = Vec::with_capacity(32);
+            fn to_raw_bytes(&self) -> alloc::vec::Vec<u8> {
+                let mut res = alloc::vec::Vec::with_capacity(32);
                 for limb in self.0.iter() {
                     res.extend_from_slice(&limb.to_le_bytes());
                 }
                 res
             }
-            fn read_raw_unchecked<R: std::io::Read>(reader: &mut R) -> Self {
+            fn read_raw_unchecked<R: crate::io::Read>(reader: &mut R) -> Self {
                 let inner = [(); 4].map(|_| {
                     let mut buf = [0; 8];
                     reader.read_exact(&mut buf).unwrap();
@@ -303,7 +303,7 @@ macro_rules! field_common {
                 });
                 Self(inner)
             }
-            fn read_raw<R: std::io::Read>(reader: &mut R) -> std::io::Result<Self> {
+            fn read_raw<R: crate::io::Read>(reader: &mut R) -> crate::io::Result<Self> {
                 let mut inner = [0u64; 4];
                 for limb in inner.iter_mut() {
                     let mut buf = [0; 8];
@@ -313,14 +313,9 @@ macro_rules! field_common {
                 let elt = Self(inner);
                 Self::is_less_than(&elt.0, &$modulus.0)
                     .then(|| elt)
-                    .ok_or_else(|| {
-                        std::io::Error::new(
-                            std::io::ErrorKind::InvalidData,
-                            "input number is not less than field modulus",
-                        )
-                    })
+                    .ok_or("input number is not less than field modulus")
             }
-            fn write_raw<W: std::io::Write>(&self, writer: &mut W) -> std::io::Result<()> {
+            fn write_raw<W: crate::io::Write>(&self, writer: &mut W) -> crate::io::Result<()> {
                 for limb in self.0.iter() {
                     writer.write_all(&limb.to_le_bytes())?;
                 }

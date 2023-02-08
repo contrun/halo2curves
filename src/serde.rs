@@ -1,4 +1,5 @@
-use std::io::{self, Read, Write};
+use crate::io::{self, Read, Write};
+use alloc::vec::Vec;
 
 /// Trait for converting raw bytes to/from the internal representation of a type.
 /// For example, field elements are represented in Montgomery form and serialized/deserialized without Montgomery reduction.

@@ -1,8 +1,12 @@
+#![no_std]
 #![cfg_attr(feature = "asm", feature(asm_const))]
+
+extern crate alloc;
 
 mod arithmetic;
 
 pub mod bn256;
+pub mod io;
 pub mod pairing;
 pub mod pasta;
 pub mod secp256k1;

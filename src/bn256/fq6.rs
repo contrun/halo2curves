@@ -257,7 +257,7 @@ impl Fq6 {
 
     /// Multiply by cubic nonresidue v.
     pub fn mul_by_nonresidue(&mut self) {
-        use std::mem::swap;
+        use core::mem::swap;
         swap(&mut self.c0, &mut self.c1);
         swap(&mut self.c0, &mut self.c2);
         // c0, c1, c2 -> c2, c0, c1
@@ -266,7 +266,7 @@ impl Fq6 {
 
     /// Multiply by cubic nonresidue v.
     pub fn mul_by_v(&mut self) {
-        use std::mem::swap;
+        use core::mem::swap;
         swap(&mut self.c0, &mut self.c1);
         swap(&mut self.c0, &mut self.c2);
 

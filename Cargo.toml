@@ -27,7 +27,10 @@ subtle = { version = "2.4", default-features = false, features = ["i128"] }
 ff = { version = "0.12.0", default-features = false }
 group = "0.12.0"
 pasta_curves = { version = "0.4.0", default-features = false, features = ["bits", "alloc"] }
-rand = "0.8"
+# TODO: pull a dependency with different features under Cargo.toml "dependencies" and "dev-dependencies"
+# https://stackoverflow.com/questions/64438139/how-to-pull-a-dependency-with-different-features-under-cargo-toml-dependencies
+# dev needs default features.
+rand = { version = "0.8", default-features = false }
 rand_core = { version = "0.6", default-features = false }
 
 [features]
